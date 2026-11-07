@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mô phỏng Biến tần PowerFlex 525 – BTN#2</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Mô phỏng thí nghiệm Biến tần PowerFlex 525</h1>
+<p>BTN #2 – Thí nghiệm Thiết bị và Hệ thống Tự động. Động cơ ESA 632-4: 220 V Δ · 50 Hz · 0,18 kW · 1350 rpm · 1,23 A · 4 cực</p></header>
+<div id="msg" class="msg">Bật công tắc 01 (STOP, tích cực thấp) trước khi chạy.</div>
+<main>
+<section class="card" id="drive">
+  <h2>Biến tần PowerFlex 525</h2>
+  <div class="hmi">
+    <div id="lcd"><i id="lFwd">FWD</i><i id="lRev">REV</i><i id="lPrg">PROGRAM</i><b id="lMain">0.0</b><small id="lUnit">HERTZ</small><u id="lName"></u></div>
+    <div class="fault" id="lFault">FAULT</div>
+    <div class="keys">
+      <button data-k="Esc">Esc</button><button data-k="Up">▲</button><button data-k="Sel">Sel</button>
+      <button data-k="Down">▼</button><button data-k="Enter">⏎</button>
+    </div>
+    <div class="fn">
+      <button class="go" data-k="Start">Start</button>
+      <button data-k="Reverse">Reverse</button>
+      <button class="stop" data-k="Stop">Stop</button>
+    </div>
+    <label class="knob">DrivePot <input id="pot" type="range" min="0" max="100" value="0"><output id="potV">0%</output></label>
+  </div>
+  <p class="hint">Esc ×2 → chọn nhóm (b/P/t/A) → ▲▼ → Enter → chọn số → Enter (xem) → Enter (sửa) → ▲▼ / Sel (đổi chữ số) → Enter lưu, Esc hủy. Ở màn hình chính, ▲ = đặt tần số (khi P047=2).</p>
+</section>
+
+<section class="card" id="panel">
+  <h2>Bảng thí nghiệm</h2>
+  <div class="sw" id="sws"></div>
+  <div class="row">
+    <label class="knob">Vr1 (chân 13, 0–10 V) <input id="vr1" type="range" min="0" max="10" step="0.01" value="0"><output id="vr1V">0.00 V</output></label>
+    <label class="knob">Vr2 (không dùng) <input id="vr2" type="range" min="0" max="10" step="0.01" value="0"></label>
+  </div>
+  <div class="lamps"><span id="R1" class="lamp g">R1</span><span id="R2" class="lamp g">R2</span><span id="R5" class="lamp r">R5</span><span id="R6" class="lamp r">R6</span></div>
+  <small>R1/R2: relay lỗi · R5/R6: relay "động cơ chạy" (mặc định, mô phỏng).</small>
+</section>
+
+<section class="card" id="motor">
+  <h2>Động cơ &amp; đồ thị</h2>
+  <div class="mrow">
+    <svg viewBox="-60 -60 120 120" width="130" height="130"><circle r="55" fill="#e8e4d8" stroke="#888" stroke-width="3"/><g id="rotor"><rect x="-50" y="-6" width="100" height="12" rx="4" fill="#556"/><rect x="-6" y="-50" width="12" height="100" rx="4" fill="#99a"/></g><circle r="9" fill="#333"/></svg>
+    <table class="rd"><tr><td>Tần số</td><td id="rF">0.0 Hz</td></tr><tr><td>Tốc độ</td><td id="rN">0 rpm</td></tr><tr><td>Điện áp ra</td><td id="rV">0 V</td></tr><tr><td>Dòng</td><td id="rI">0.00 A</td></tr><tr><td>Chiều</td><td id="rD">–</td></tr></table>
+  </div>
+  <canvas id="cv" width="600" height="170"></canvas>
+  <small>Xanh: tần số ra / P044 · Xanh dương: giá trị đặt PID · Cam: hồi tiếp PID (60 s gần nhất)</small>
+  <label>Tốc độ mô phỏng <select id="speed"><option value="1">×1</option><option value="2">×2</option><option value="5">×5</option></select></label>
+</section>
+
+<section class="card" id="lab">
+  <h2>Nạp nhanh cấu hình thí nghiệm</h2>
+  <div id="presets"></div>
+  <div id="phint" class="hint">Chọn một thí nghiệm để nạp thông số, hoặc tự cấu hình bằng keypad.</div>
+  <button id="factory">Reset nhà máy (P053 = 2)</button>
+</section>
+
+<section class="card" id="rec">
+  <h2>Ghi số liệu</h2>
+  <button id="add">Ghi dòng</button><button id="copy">Sao chép CSV</button><button id="clr">Xóa</button>
+  <table id="tb"><thead><tr><th>Hz</th><th>rpm</th><th>V</th><th>A</th><th>Ghi chú</th></tr></thead><tbody></tbody></table>
+</section>
+</main>
+<footer>Mô phỏng gần đúng phục vụ học tập; kết quả thực tế có thể khác. Đối chiếu user manual PowerFlex 525.</footer>
+<script src="app.js"></script>
+</body>
+</html>
