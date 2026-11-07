@@ -213,7 +213,7 @@ function apply(name){
 function buildSw(){
   const box = $('#sws'); box.innerHTML = '';
   Object.keys(S.sw).forEach(k => {
-    const b = document.createElement('button'); b.className = S.sw[k]?'on':''; b.innerHTML = `${k}<small>${S.sw[k]?'ON 24V':'OFF 0V'}</small>`;
+    const b = document.createElement('button'); b.className = S.sw[k]?'on':''; b.innerHTML = `<i class="sk"></i><span>${k}</span><small>${S.sw[k]?'ON 24V':'OFF 0V'}</small>`;
     b.onclick = () => { S.sw[k] ^= 1; buildSw(); }; box.appendChild(b);
   });
 }
@@ -247,3 +247,15 @@ setInterval(() => {
   if (++tick % 2===0){ S.hist.push([S.f/Math.max(P.P044,1), refPct()/100, fbPct()/100]); if (S.hist.length>600) S.hist.shift(); }
   render(); draw();
 }, 50);
+
+// ---------- Rotary knobs ----------
+document.querySelectorAll('.rk').forEach(k => {
+  const inp = $('#'+k.dataset.for), mn = +inp.min, mx = +inp.max;
+  const set = v => { inp.value = v; k.firstElementChild.style.transform = `rotate(${-135+(v-mn)/(mx-mn)*270}deg)`; };
+  const mv = e => { const r = k.getBoundingClientRect(); let a = Math.atan2(e.clientX-r.left-r.width/2, -(e.clientY-r.top-r.height/2))*180/Math.PI;
+    set(+(mn+(clamp(a,-135,135)+135)/270*(mx-mn)).toFixed(2)); };
+  k.onpointerdown = e => { k.setPointerCapture(e.pointerId); mv(e); k.onpointermove = mv; };
+  k.onpointerup = () => k.onpointermove = null;
+  k.onwheel = e => { e.preventDefault(); set(clamp(+inp.value+(e.deltaY<0?1:-1)*(mx-mn)/50, mn, mx)); };
+  set(+inp.value);
+});
