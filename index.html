@@ -11,47 +11,61 @@
 <p>BTN #2 – Thí nghiệm Thiết bị và Hệ thống Tự động. Động cơ ESA 632-4: 220 V Δ · 50 Hz · 0,18 kW · 1350 rpm · 1,23 A · 4 cực</p></header>
 <div id="msg" class="msg">Bật công tắc 01 (STOP, tích cực thấp) trước khi chạy.</div>
 <main>
-<section class="card" id="drive">
-  <h2>Biến tần PowerFlex 525</h2>
-  <div class="hmi">
-    <div id="lcd"><i id="lFwd">FWD</i><i id="lRev">REV</i><i id="lPrg">PROGRAM</i><b id="lMain">0.0</b><small id="lUnit">HERTZ</small><u id="lName"></u></div>
-    <div class="fault" id="lFault">FAULT</div>
-    <div class="keys">
-      <button data-k="Esc">Esc</button><button data-k="Up">▲</button><button data-k="Sel">Sel</button>
-      <button data-k="Down">▼</button><button data-k="Enter">⏎</button>
-    </div>
-    <div class="fn">
-      <button class="go" data-k="Start">Start</button>
-      <button data-k="Reverse">Reverse</button>
-      <button class="stop" data-k="Stop">Stop</button>
-    </div>
-    <label class="knob">DrivePot <input id="pot" type="range" min="0" max="100" value="0"><output id="potV">0%</output></label>
-  </div>
-  <p class="hint">Esc ×2 → chọn nhóm (b/P/t/A) → ▲▼ → Enter → chọn số → Enter (xem) → Enter (sửa) → ▲▼ / Sel (đổi chữ số) → Enter lưu, Esc hủy. Ở màn hình chính, ▲ = đặt tần số (khi P047=2).</p>
+<section class="card wide" id="benchc">
+<h2>Bàn thí nghiệm</h2>
+<div id="bench">
+<svg viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+<defs>
+<linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9edf0"/><stop offset=".5" stop-color="#b9c0c7"/><stop offset="1" stop-color="#dfe4e8"/></linearGradient>
+<linearGradient id="cream" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3efe3"/><stop offset="1" stop-color="#cfc8b4"/></linearGradient>
+<linearGradient id="white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fafafa"/><stop offset="1" stop-color="#d9dcdf"/></linearGradient>
+</defs>
+<rect width="1000" height="560" fill="#cfd8dc"/>
+<rect x="0" y="535" width="1000" height="25" fill="#8d6e4a"/>
+<rect x="300" y="520" width="480" height="18" rx="3" fill="url(#steel)" stroke="#889"/>
+<g stroke="#667" stroke-width="1"><path d="M330 529h20M370 529h20M410 529h20M450 529h20M490 529h20M530 529h20M570 529h20M610 529h20M650 529h20M690 529h20M730 529h20"/></g>
+<rect x="320" y="20" width="665" height="320" rx="8" fill="url(#steel)" stroke="#778" stroke-width="3"/>
+<rect x="345" y="38" width="615" height="285" rx="4" fill="#eceff1" stroke="#2a2250" stroke-width="2"/>
+<path d="M650 38V323M650 215H960" stroke="#2a2250" stroke-width="2" fill="none"/>
+<text x="805" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#2a2250" font-family="serif">OUTPUT</text>
+<text x="497" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#2a2250" font-family="serif">INPUT</text>
+<text x="805" y="316" text-anchor="middle" font-size="13" font-weight="700" fill="#2a2250" font-family="serif">ANALOG</text>
+<rect x="20" y="30" width="285" height="390" rx="10" fill="#26292d"/>
+<rect x="20" y="275" width="285" height="145" rx="10" fill="url(#white)"/>
+<g stroke="#9aa" stroke-width="5" stroke-linecap="round"><path d="M50 300v95M75 300v95M100 300v95M125 300v95"/></g>
+<text x="40" y="400" font-size="22" font-weight="700" font-style="italic" fill="#b3282d" font-family="sans-serif">PowerFlex</text><text x="150" y="400" font-size="11" fill="#b3282d">525</text>
+<text x="40" y="52" font-size="9" fill="#bbb" font-family="sans-serif">Allen-Bradley</text>
+<path d="M150 420C150 470 260 440 420 395" stroke="#2b6cb0" stroke-width="5" fill="none"/>
+<rect x="430" y="375" width="130" height="38" rx="5" fill="url(#cream)" stroke="#8a846f"/>
+<rect x="345" y="405" width="330" height="118" rx="26" fill="url(#cream)" stroke="#8a846f" stroke-width="2"/>
+<g stroke="#b5ae98" stroke-width="6"><path d="M400 410v110M430 410v110M460 410v110M490 410v110M520 410v110M550 410v110"/></g>
+<circle cx="345" cy="464" r="48" fill="url(#cream)" stroke="#8a846f" stroke-width="2"/>
+<rect x="445" y="430" width="200" height="62" rx="4" fill="#c9ccd1" stroke="#555"/>
+<text font-family="sans-serif" fill="#222" text-anchor="middle"><tspan x="545" y="446" font-size="8" font-weight="700">ENERTECH ESA 632-4</tspan><tspan x="545" y="460" font-size="8">220V Δ · 50Hz · 0.18kW</tspan><tspan x="545" y="473" font-size="8">1350rpm · 1.23A · cosφ 0.65</tspan><tspan x="545" y="486" font-size="7">3 PHASE ASYNCHRONOUS MOTOR</tspan></text>
+<rect x="675" y="448" width="75" height="32" rx="3" fill="#8b7f77" stroke="#555"/>
+<g transform="translate(790 464)"><circle r="40" fill="#e8e8ec" stroke="#556" stroke-width="3"/><g id="rotor"><rect x="-34" y="-5" width="68" height="10" rx="3" fill="#556"/><rect x="-5" y="-34" width="10" height="68" rx="3" fill="#99a"/><circle cx="26" cy="0" r="5" fill="#d33"/></g><circle r="7" fill="#333"/></g>
+</svg>
+<div id="lcd"><i id="lFwd">FWD</i><i id="lRev">REV</i><i id="lPrg">PROGRAM</i><b id="lMain">0.0</b><small id="lUnit">HERTZ</small><u id="lName"></u></div>
+<div class="fault" id="lFault">FAULT</div>
+<div class="keys"><button data-k="Esc">Esc</button><button data-k="Up">▲</button><button data-k="Sel">Sel</button><button data-k="Down">▼</button><button data-k="Enter">⏎</button></div>
+<div class="fn"><button class="go" data-k="Start">I</button><button data-k="Reverse">⟲</button><button class="stop" data-k="Stop">O</button></div>
+<div class="kb" id="kpot"><div class="rk" data-for="pot"><i></i></div><span>DrivePot <output id="potV">0%</output></span></div>
+<input id="pot" type="range" min="0" max="100" value="0" hidden>
+<div class="sw" id="sws"></div>
+<div class="lamps"><span id="R1" class="lamp g">R1</span><span id="R2" class="lamp g">R2</span><span id="R5" class="lamp r">R5</span><span id="R6" class="lamp r">R6</span></div>
+<div class="kb" id="kv1"><div class="rk" data-for="vr1"><i></i></div><span>Vr1 (13) <output id="vr1V">0.00 V</output></span></div>
+<div class="kb" id="kv2"><div class="rk" data-for="vr2"><i></i></div><span>Vr2</span></div>
+<input id="vr1" type="range" min="0" max="10" step="0.01" value="0" hidden><input id="vr2" type="range" min="0" max="10" step="0.01" value="0" hidden>
+</div>
+<p class="hint">Esc ×2 → nhóm (b/P/t/A) → ▲▼ → Enter → số → Enter (xem) → Enter (sửa) → ▲▼ / Sel (chữ số) → Enter lưu, Esc hủy. Ở màn hình chính, ▲ = đặt tần số (khi P047=2). Kéo vòng tròn để xoay núm; bấm công tắc để ON/OFF. R1/R2: relay lỗi · R5/R6: relay "chạy" (mô phỏng).</p>
 </section>
-
-<section class="card" id="panel">
-  <h2>Bảng thí nghiệm</h2>
-  <div class="sw" id="sws"></div>
-  <div class="row">
-    <label class="knob">Vr1 (chân 13, 0–10 V) <input id="vr1" type="range" min="0" max="10" step="0.01" value="0"><output id="vr1V">0.00 V</output></label>
-    <label class="knob">Vr2 (không dùng) <input id="vr2" type="range" min="0" max="10" step="0.01" value="0"></label>
-  </div>
-  <div class="lamps"><span id="R1" class="lamp g">R1</span><span id="R2" class="lamp g">R2</span><span id="R5" class="lamp r">R5</span><span id="R6" class="lamp r">R6</span></div>
-  <small>R1/R2: relay lỗi · R5/R6: relay "động cơ chạy" (mặc định, mô phỏng).</small>
-</section>
-
 <section class="card" id="motor">
-  <h2>Động cơ &amp; đồ thị</h2>
-  <div class="mrow">
-    <svg viewBox="-60 -60 120 120" width="130" height="130"><circle r="55" fill="#e8e4d8" stroke="#888" stroke-width="3"/><g id="rotor"><rect x="-50" y="-6" width="100" height="12" rx="4" fill="#556"/><rect x="-6" y="-50" width="12" height="100" rx="4" fill="#99a"/></g><circle r="9" fill="#333"/></svg>
-    <table class="rd"><tr><td>Tần số</td><td id="rF">0.0 Hz</td></tr><tr><td>Tốc độ</td><td id="rN">0 rpm</td></tr><tr><td>Điện áp ra</td><td id="rV">0 V</td></tr><tr><td>Dòng</td><td id="rI">0.00 A</td></tr><tr><td>Chiều</td><td id="rD">–</td></tr></table>
-  </div>
-  <canvas id="cv" width="600" height="170"></canvas>
-  <small>Xanh: tần số ra / P044 · Xanh dương: giá trị đặt PID · Cam: hồi tiếp PID (60 s gần nhất)</small>
-  <label>Tốc độ mô phỏng <select id="speed"><option value="1">×1</option><option value="2">×2</option><option value="5">×5</option></select></label>
+<h2>Số liệu &amp; đồ thị</h2>
+<table class="rd"><tr><td>Tần số</td><td id="rF">0.0 Hz</td></tr><tr><td>Tốc độ</td><td id="rN">0 rpm</td></tr><tr><td>Điện áp ra</td><td id="rV">0 V</td></tr><tr><td>Dòng</td><td id="rI">0.00 A</td></tr><tr><td>Chiều</td><td id="rD">–</td></tr></table>
+<canvas id="cv" width="600" height="170"></canvas>
+<small>Xanh: tần số ra / P044 · Xanh dương: giá trị đặt PID · Cam: hồi tiếp PID (60 s gần nhất)</small>
+<label>Tốc độ mô phỏng <select id="speed"><option value="1">×1</option><option value="2">×2</option><option value="5">×5</option></select></label>
 </section>
-
 <section class="card" id="lab">
   <h2>Nạp nhanh cấu hình thí nghiệm</h2>
   <div id="presets"></div>
